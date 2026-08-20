@@ -54,12 +54,12 @@
 
 .hero-headline {
   font-family: var(--f-display);
-  font-size: clamp(62px, 9.5vw, 144px);
-  font-weight: 900; line-height: 0.92;
-  letter-spacing: -0.03em; color: var(--ink);
-  max-width: 980px; position: relative; z-index: 1;
+  font-size: clamp(56px, 8.5vw, 128px);
+  font-weight: 400; line-height: 0.95;
+  letter-spacing: 0.02em; color: var(--ink);
+  max-width: 100%; position: relative; z-index: 1;
 }
-.hl-line { display: block; overflow: hidden; padding-top: 0.18em; margin-top: -0.18em; }
+.hl-line { display: block; overflow: visible; }
 .hl-inner {
   display: block;
   animation: slideUpClip 1s var(--ease-out) both;
@@ -603,9 +603,14 @@
         <p class="work-desc">Performance ad produced for paid media — engineered to stop the scroll and drive clicks.</p>
       </div>
     </div>
-    <div class="work-card reveal d2">
-      <div class="work-yt-wrap">
-        <iframe src="https://www.youtube.com/embed/m2_P4faMKIQ" title="AI Invoice Extraction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <a href="https://www.youtube.com/shorts/m2_P4faMKIQ" target="_blank" rel="noopener" class="work-card reveal d2">
+      <div class="work-yt-wrap" style="position:relative;background:#000;overflow:hidden;">
+        <img src="https://img.youtube.com/vi/m2_P4faMKIQ/maxresdefault.jpg" alt="AI Invoice Extraction" style="width:100%;display:block;height:240px;object-fit:cover;opacity:0.85;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="width:56px;height:56px;background:#ff0000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+            <svg width="20" height="20" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
       </div>
       <div class="work-card-body">
         <div class="work-tag">YouTube Shorts · AI Workflow</div>
@@ -613,12 +618,10 @@
         <p class="work-desc">Live demonstration of an AI-powered invoice extraction and merging workflow built and deployed for a real client.</p>
       </div>
       <div class="work-card-footer">
-        <a href="https://www.youtube.com/shorts/m2_P4faMKIQ" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px;">
-          Watch on YouTube
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        Watch on YouTube
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
