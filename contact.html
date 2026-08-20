@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Focal Agencies</title>
+<meta name="description" content="Book a free 30-minute discovery call with Focal Agencies. No obligation, no jargon — just an honest conversation about your AI opportunity.">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ── CONTACT PAGE ── */
+
+/* hero override — tighter */
+.contact-hero {
+  padding: 148px 52px 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  position: relative; overflow: hidden;
+  background: var(--cream);
+}
+.contact-hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 60% at 80% 20%, rgba(193,59,31,0.055) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 40% at 5% 90%, rgba(26,79,204,0.04) 0%, transparent 50%);
+}
+.contact-hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(14,13,11,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(14,13,11,0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.contact-hero-left { position: relative; z-index: 1; }
+.contact-hero-title {
+  font-family: var(--f-display);
+  font-size: clamp(52px, 7vw, 100px);
+  font-weight: 900; line-height: 0.92; letter-spacing: -0.03em; color: var(--ink);
+}
+.contact-hero-title em { font-style: italic; color: var(--vermil); }
+.contact-hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--ink-60); line-height: 1.75; margin-top: 24px; max-width: 400px;
+}
+.contact-hero-right { position: relative; z-index: 1; }
+.contact-quick-info {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.cqi-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 24px; background: var(--ivory); border: 1px solid var(--ivory-d);
+  transition: border-color 0.25s;
+}
+.cqi-item:hover { border-color: var(--ink-20); }
+.cqi-icon { color: var(--vermil); flex-shrink: 0; margin-top: 2px; }
+.cqi-label {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-40); margin-bottom: 4px;
+}
+.cqi-value { font-size: 15px; font-weight: 400; color: var(--ink); text-decoration: none; }
+.cqi-value:hover { color: var(--vermil); }
+.cqi-note { font-size: 12px; color: var(--ink-40); margin-top: 2px; font-weight: 300; }
+
+/* main contact grid */
+.contact-main {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 0; min-height: 640px;
+  border-top: 1px solid var(--ivory-d);
+}
+
+/* form side */
+.form-side {
+  padding: 80px 64px; background: var(--cream);
+  border-right: 1px solid var(--ivory-d);
+}
+.form-heading {
+  font-family: var(--f-display); font-size: 32px; font-weight: 900;
+  color: var(--ink); line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.02em;
+}
+.form-heading em { font-style: italic; color: var(--vermil); }
+.form-sub { font-size: 14px; font-weight: 300; color: var(--ink-60); margin-bottom: 40px; line-height: 1.65; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.form-label {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-60);
+}
+.form-label .req { color: var(--vermil); margin-left: 2px; }
+.form-input, .form-select, .form-textarea {
+  background: var(--ivory); border: 1.5px solid var(--ivory-d);
+  padding: 13px 16px; font-family: var(--f-body); font-size: 15px;
+  color: var(--ink); outline: none; width: 100%;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--ink-30); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--vermil); background: #fff;
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230E0D0B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+  padding-right: 40px; cursor: pointer;
+}
+.form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.form-check-group {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;
+}
+.form-check {
+  display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+}
+.form-check input[type="checkbox"] {
+  width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0;
+  accent-color: var(--vermil); cursor: pointer;
+}
+.form-check-label { font-size: 13.5px; color: var(--ink-60); line-height: 1.5; font-weight: 300; }
+.form-check-label strong { color: var(--ink); font-weight: 500; }
+
+.form-submit {
+  width: 100%; padding: 18px;
+  font-family: var(--f-label); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--ink); color: #fff; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: background 0.2s;
+}
+.form-submit:hover { background: var(--vermil); }
+.form-submit svg { transition: transform 0.2s; }
+.form-submit:hover svg { transform: translateX(4px); }
+.form-footer-note {
+  text-align: center; font-size: 12px; color: var(--ink-40); margin-top: 14px; font-weight: 300;
+}
+
+/* info side */
+.info-side {
+  background: var(--navy); padding: 80px 52px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.info-section { margin-bottom: 48px; }
+.info-title {
+  font-family: var(--f-display); font-size: 26px; font-weight: 900;
+  color: #fff; line-height: 1.1; margin-bottom: 14px; letter-spacing: -0.015em;
+}
+.info-title em { font-style: italic; color: var(--vermil-l); }
+.info-body { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.75; }
+
+.what-happens {
+  display: flex; flex-direction: column; gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.wh-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.wh-num {
+  width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-family: var(--f-label); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4);
+}
+.wh-text { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.55; }
+.wh-text strong { color: #fff; font-weight: 500; }
+
+.info-socials { margin-top: auto; }
+.info-socials-label {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25);
+  margin-bottom: 14px;
+}
+.social-links { display: flex; flex-direction: column; gap: 8px; }
+.social-link {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5);
+  text-decoration: none; padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-link:hover { border-color: rgba(255,255,255,0.2); color: #fff; background: rgba(255,255,255,0.05); }
+.sl-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+
+/* guarantee strip */
+.guarantee-strip {
+  background: var(--ivory); border-top: 1px solid var(--ivory-d); border-bottom: 1px solid var(--ivory-d);
+  padding: 0 52px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.gs-item {
+  padding: 40px 36px; display: flex; align-items: flex-start; gap: 16px;
+  border-right: 1px solid var(--ivory-d);
+}
+.gs-item:last-child { border-right: none; }
+.gs-icon { color: var(--vermil); flex-shrink: 0; margin-top: 2px; }
+.gs-title { font-family: var(--f-label); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.gs-desc { font-size: 13px; font-weight: 300; color: var(--ink-60); line-height: 1.6; }
+
+/* success state (hidden by default) */
+.form-success {
+  display: none; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center;
+  padding: 60px 40px; min-height: 400px;
+}
+.form-success.show { display: flex; }
+.success-icon { color: var(--vermil); margin-bottom: 24px; }
+.success-title { font-family: var(--f-display); font-size: 32px; font-weight: 900; color: var(--ink); margin-bottom: 12px; }
+.success-sub { font-size: 16px; font-weight: 300; color: var(--ink-60); line-height: 1.7; max-width: 340px; }
+
+@media (max-width: 1100px) {
+  .contact-hero { grid-template-columns: 1fr; gap: 44px; padding: 130px 28px 64px; }
+  .contact-main { grid-template-columns: 1fr; }
+  .form-side { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--ivory-d); }
+  .info-side { padding: 56px 28px; }
+  .guarantee-strip { padding: 0 28px; grid-template-columns: 1fr; }
+  .gs-item { border-right: none; border-bottom: 1px solid var(--ivory-d); padding: 28px 0; }
+  .gs-item:last-child { border-bottom: none; }
+}
+@media (max-width: 640px) {
+  .contact-hero { padding: 110px 20px 52px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-side { padding: 44px 20px; }
+  .info-side { padding: 44px 20px; }
+  .guarantee-strip { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">Focal Agencies</a>
+  <div class="nav-center">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="results.html" class="nav-link">Results</a>
+    <a href="about.html" class="nav-link">About</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta active" style="background:var(--vermil);border:2px solid var(--vermil);">Book a Call <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="services.html" class="nav-link">Services</a>
+  <a href="results.html" class="nav-link">Results</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-cta btn-primary">Book a Call →</a>
+</div>
+
+<!-- CONTACT HERO -->
+<div class="contact-hero">
+  <div class="contact-hero-bg"></div>
+  <div class="contact-hero-left">
+    <div class="label reveal" style="margin-bottom:20px;">Let's Talk</div>
+    <h1 class="contact-hero-title reveal d1">Book your<br><em>free call.</em></h1>
+    <p class="contact-hero-sub reveal d2">30 minutes. No obligation. No jargon. We'll show you exactly where AI can book you revenue and cut your costs — and walk you through exactly what we'd build.</p>
+  </div>
+  <div class="contact-hero-right reveal-right">
+    <div class="contact-quick-info">
+      <div class="cqi-item">
+        <svg class="cqi-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        <div>
+          <div class="cqi-label">Email Us</div>
+          <a href="mailto:Archit@focalagencies.com" class="cqi-value">Archit@focalagencies.com</a>
+          <div class="cqi-note">Response within 24 hours</div>
+        </div>
+      </div>
+      <div class="cqi-item">
+        <svg class="cqi-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        <div>
+          <div class="cqi-label">Response Time</div>
+          <div class="cqi-value">Within 24 hours</div>
+          <div class="cqi-note">Monday–Saturday · All timezones</div>
+        </div>
+      </div>
+      <div class="cqi-item">
+        <svg class="cqi-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        <div>
+          <div class="cqi-label">No Lock-In</div>
+          <div class="cqi-value">You own everything we build</div>
+          <div class="cqi-note">Full IP transfer — no vendor dependency</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTACT GRID -->
+<div class="contact-main">
+  <!-- FORM SIDE -->
+  <div class="form-side">
+    <div id="form-wrap">
+      <h2 class="form-heading">Tell us about your <em>business.</em></h2>
+      <p class="form-sub">Fill this in and we'll come to the call already understanding your situation — so we can make every minute count.</p>
+
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">First Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="fname" name="fname" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Last Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="lname" name="lname" placeholder="Your last name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Work Email <span class="req">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="company">Company Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="company" name="company" placeholder="Acme Inc." required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="industry">Industry <span class="req">*</span></label>
+            <select class="form-select" id="industry" name="industry" required>
+              <option value="" disabled selected>Select industry</option>
+              <option>Real Estate</option>
+              <option>Hospitality</option>
+              <option>Healthcare</option>
+              <option>E-Commerce</option>
+              <option>Education</option>
+              <option>Auto Dealership</option>
+              <option>Logistics</option>
+              <option>Legal</option>
+              <option>Financial Services</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="service">What are you most interested in? <span class="req">*</span></label>
+          <select class="form-select" id="service" name="service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Website Development</option>
+            <option>AI Voice</option>
+            <option>Sales Funnels</option>
+            <option>Ads (Meta / Google / TikTok)</option>
+            <option>SaaS Development</option>
+            <option>Scraper Development</option>
+            <option>Not Sure Yet — Show Me What Fits</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="monthly-calls">Approximate Monthly Call Volume</label>
+          <select class="form-select" id="monthly-calls" name="monthly-calls">
+            <option value="" disabled selected>Select volume</option>
+            <option>Under 500 calls/month</option>
+            <option>500–2,000 calls/month</option>
+            <option>2,000–10,000 calls/month</option>
+            <option>10,000–50,000 calls/month</option>
+            <option>50,000+ calls/month</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">What's the main problem you're trying to solve?</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about the biggest gap in your current operation — missed calls, manual tasks, leads falling through the cracks..."></textarea>
+        </div>
+
+        <div class="form-check-group">
+          <label class="form-check">
+            <input type="checkbox" required>
+            <span class="form-check-label">I agree to be contacted by Focal Agencies about this enquiry. <strong>No spam, ever.</strong></span>
+          </label>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Book My Free Consultation
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="form-footer-note">Response within 24 hours · No lock-in · You own what we build</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="form-success" id="form-success">
+      <svg class="success-icon" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+      <h2 class="success-title">We've got it.</h2>
+      <p class="success-sub">Expect to hear from us within 24 hours to confirm your call time. In the meantime, take a look at what we've built for clients like you.</p>
+      <a href="results.html" class="btn btn-primary" style="margin-top:28px;">See Client Results →</a>
+    </div>
+  </div>
+
+  <!-- INFO SIDE -->
+  <div class="info-side">
+    <div>
+      <div class="info-section">
+        <h3 class="info-title">What happens <em>after you submit?</em></h3>
+        <p class="info-body">No automated sequences. No generic follow-up drip. A real person reads your submission and responds personally within 24 hours.</p>
+      </div>
+
+      <div class="what-happens">
+        <div class="wh-step">
+          <div class="wh-num">1</div>
+          <div class="wh-text"><strong>Within 24 hours</strong> — we review your submission and send a calendar link for your discovery call.</div>
+        </div>
+        <div class="wh-step">
+          <div class="wh-num">2</div>
+          <div class="wh-text"><strong>Discovery call (30 min)</strong> — we map your operation, identify the highest-ROI AI opportunity, and answer every question.</div>
+        </div>
+        <div class="wh-step">
+          <div class="wh-num">3</div>
+          <div class="wh-text"><strong>Scope & proposal</strong> — within 48 hours of the call, you receive a clear scope document with timeline, deliverables, and pricing.</div>
+        </div>
+        <div class="wh-step">
+          <div class="wh-num">4</div>
+          <div class="wh-text"><strong>System design</strong> — if you proceed, we design your playbook and go live in 14 days for a Pilot deployment.</div>
+        </div>
+        <div class="wh-step" style="border-bottom:none;">
+          <div class="wh-num">5</div>
+          <div class="wh-text"><strong>You keep your results</strong> — every system we build is yours. No vendor lock-in, no proprietary black box.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-socials" style="margin-top:48px;">
+      <div class="info-socials-label">Follow the Work</div>
+      <div class="social-links">
+        <a href="#" class="social-link">
+          <div class="sl-icon"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg></div>
+          LinkedIn — Follow our builds and case studies
+        </a>
+        <a href="#" class="social-link">
+          <div class="sl-icon"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.12C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.57A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.12 2.12C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.57a3.02 3.02 0 0 0 2.12-2.12C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg></div>
+          YouTube — Watch live build videos &amp; demos
+        </a>
+        <a href="#" class="social-link">
+          <div class="sl-icon"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+          X (Twitter) — Thoughts on AI &amp; automation
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEE STRIP -->
+<div class="guarantee-strip">
+  <div class="gs-item reveal">
+    <svg class="gs-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+    <div>
+      <div class="gs-title">You Own Everything</div>
+      <div class="gs-desc">All code, assets, and systems we build are fully yours. No proprietary lock-in, no ongoing dependency on us.</div>
+    </div>
+  </div>
+  <div class="gs-item reveal d1">
+    <svg class="gs-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3"/></svg>
+    <div>
+      <div class="gs-title">Clear Scope Before We Build</div>
+      <div class="gs-desc">Every engagement starts with a written scope: deliverables, timeline, and pricing agreed before a single line of code is written.</div>
+    </div>
+  </div>
+  <div class="gs-item reveal d2">
+    <svg class="gs-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+    <div>
+      <div class="gs-title">Live in 14 Days</div>
+      <div class="gs-desc">Pilot agents go live within 14 days of your signed agreement. We test on real calls before your customers ever hear it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">Focal Agencies</a>
+      <p class="footer-tagline">Websites, AI voice, sales funnels, ads, SaaS, and scraper pipelines — built fast, deployed live.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">Li</a><a href="#" class="footer-social">YT</a><a href="#" class="footer-social">X</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="services.html#web">Website Development</a></li>
+        <li><a href="services.html#voice">AI Voice</a></li>
+        <li><a href="services.html#funnels">Sales Funnels</a></li>
+        <li><a href="services.html#ads">Ads</a></li>
+        <li><a href="services.html#saas">SaaS Development</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="results.html">Case Studies</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:Archit@focalagencies.com">Archit@focalagencies.com</a></li>
+        <li><a href="contact.html">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Focal Agencies. All rights reserved.</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Validate required fields
+    const required = this.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (field.type === 'checkbox' && !field.checked) { valid = false; field.closest('.form-check').style.outline = '2px solid var(--vermil)'; }
+      else if (field.value.trim() === '') { valid = false; field.style.borderColor = 'var(--vermil)'; }
+      else { field.style.borderColor = ''; if (field.type === 'checkbox') field.closest('.form-check').style.outline = ''; }
+    });
+    if (!valid) return;
+    // Show success
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Clear error on input
+  document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+    el.addEventListener('input', () => el.style.borderColor = '');
+  });
+</script>
+</body>
+</html>

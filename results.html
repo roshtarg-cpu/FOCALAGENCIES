@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results — Focal Agencies</title>
+<meta name="description" content="Real case studies and client results from Focal Agencies AI deployments across real estate, hospitality, healthcare, and more.">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ── RESULTS PAGE ── */
+
+/* filter bar */
+.filter-bar {
+  background: var(--ivory);
+  border-top: 1px solid var(--ivory-d);
+  border-bottom: 1px solid var(--ivory-d);
+  padding: 0 52px;
+  display: flex; align-items: center; gap: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn {
+  font-family: var(--f-label); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-40); padding: 16px 16px;
+  border: none; background: none; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.filter-btn:hover { color: var(--ink); }
+.filter-btn.active { color: var(--vermil); border-color: var(--vermil); }
+
+/* metrics band */
+.metrics-band {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--navy); gap: 1px;
+}
+.metric-cell {
+  padding: 48px 36px;
+  background: var(--navy);
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.25s;
+}
+.metric-cell:last-child { border-right: none; }
+.metric-cell:hover { background: var(--navy-l); }
+.metric-val {
+  font-family: var(--f-display); font-size: clamp(36px, 4vw, 56px);
+  font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.03em;
+}
+.metric-val sup { font-size: 0.45em; color: var(--vermil-l); vertical-align: super; }
+.metric-lbl {
+  font-family: var(--f-label); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-top: 10px;
+}
+
+/* case studies */
+.case-studies { padding: 100px 52px; }
+.cs-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 24px; margin-top: 64px;
+}
+.cs-card {
+  border: 1px solid var(--ivory-d); background: var(--cream);
+  overflow: hidden; transition: border-color 0.25s, transform 0.3s var(--ease-out);
+}
+.cs-card:hover { border-color: var(--ink-20); transform: translateY(-4px); }
+.cs-card-header { padding: 44px 44px 0; }
+.cs-sector {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermil);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.cs-sector::before { content:''; width:20px; height:2px; background:var(--vermil); flex-shrink:0; }
+.cs-client {
+  font-family: var(--f-display); font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 900; color: var(--ink); line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.cs-tagline { font-size: 15px; font-weight: 300; color: var(--ink-60); line-height: 1.7; margin-bottom: 32px; }
+.cs-stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--ivory-d);
+  border-top: 1px solid var(--ivory-d);
+}
+.cs-stat { padding: 20px 24px; background: var(--ivory); }
+.cs-stat-val {
+  font-family: var(--f-display); font-size: 26px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.02em; line-height: 1;
+}
+.cs-stat-lbl {
+  font-family: var(--f-label); font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-40); margin-top: 4px;
+}
+
+/* featured case study */
+.cs-card.featured {
+  grid-column: 1 / -1;
+  background: var(--navy); border-color: transparent;
+}
+.cs-card.featured .cs-client { color: #fff; }
+.cs-card.featured .cs-tagline { color: rgba(255,255,255,0.5); }
+.cs-card.featured .cs-sector { color: var(--vermil-l); }
+.cs-card.featured .cs-sector::before { background: var(--vermil-l); }
+.cs-card.featured .cs-stats-row { background: rgba(255,255,255,0.06); }
+.cs-card.featured .cs-stat { background: rgba(255,255,255,0.04); }
+.cs-card.featured .cs-stat-val { color: #fff; }
+.cs-card.featured .cs-stat-lbl { color: rgba(255,255,255,0.35); }
+.cs-card.featured .cs-card-header { padding: 52px 52px 0; }
+.cs-card.featured:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); }
+
+.cs-featured-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+.cs-site-preview { position: relative; width: 100%; height: 240px; overflow: hidden; background: #f4f4f4; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); }
+.cs-site-preview iframe { position: absolute; top: 0; left: 0; width: 200%; height: 200%; border: none; transform: scale(0.5); transform-origin: top left; pointer-events: none; }
+.cs-featured-quote {
+  padding: 0 52px 48px;
+}
+.cs-quote-mark {
+  font-family: var(--f-display); font-size: 80px; color: rgba(255,255,255,0.08);
+  font-weight: 900; line-height: 0.7; margin-bottom: 16px;
+}
+.cs-quote-text {
+  font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.7);
+  font-style: italic; line-height: 1.75;
+}
+.cs-quote-author {
+  margin-top: 20px; font-family: var(--f-label); font-size: 12px;
+  font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* testimonials wall */
+.testi-wall { padding: 100px 52px; background: var(--ivory); }
+.twall-grid {
+  columns: 3; gap: 20px; margin-top: 56px;
+}
+.twall-card {
+  break-inside: avoid; background: var(--cream);
+  border: 1px solid var(--ivory-d);
+  padding: 36px 32px; margin-bottom: 20px;
+  transition: border-color 0.25s;
+}
+.twall-card:hover { border-color: var(--vermil); }
+.tw-stars { color: var(--vermil); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+.tw-text {
+  font-size: 14.5px; font-weight: 300; color: var(--ink); line-height: 1.78;
+  font-style: italic; margin-bottom: 22px;
+}
+.tw-author { display: flex; align-items: center; gap: 12px; }
+.tw-av {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--ivory-d);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-label); font-size: 11px; font-weight: 700; color: var(--ink-60);
+  flex-shrink: 0;
+}
+.tw-name { font-family: var(--f-label); font-size: 12.5px; font-weight: 700; color: var(--ink); }
+.tw-role { font-size: 11.5px; color: var(--ink-60); margin-top: 1px; }
+.tw-badge {
+  font-family: var(--f-label); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; background: var(--blue-l); padding: 2px 8px;
+  border-radius: 20px; margin-left: 6px;
+}
+
+/* industries banner */
+.industries-banner {
+  background: var(--vermil); padding: 60px 52px;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+  align-items: center;
+}
+.ind-item {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 20px 12px;
+  background: rgba(255,255,255,0.1);
+  transition: background 0.2s;
+}
+.ind-item:hover { background: rgba(255,255,255,0.18); }
+.ind-name {
+  font-family: var(--f-label); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+.ind-icon { font-size: 24px; }
+
+@media (max-width: 1100px) {
+  .filter-bar { padding: 0 28px; }
+  .metrics-band { grid-template-columns: repeat(3, 1fr); }
+  .case-studies { padding: 72px 28px; }
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-card.featured { grid-column: auto; }
+  .cs-featured-inner { grid-template-columns: 1fr; }
+  .cs-featured-quote { padding: 0 28px 36px; }
+  .cs-card.featured .cs-card-header { padding: 36px 28px 0; }
+  .testi-wall { padding: 72px 28px; }
+  .twall-grid { columns: 2; }
+  .industries-banner { grid-template-columns: repeat(3, 1fr); padding: 48px 28px; }
+}
+@media (max-width: 640px) {
+  .filter-bar { padding: 0 20px; }
+  .metrics-band { grid-template-columns: repeat(2, 1fr); }
+  .metric-cell:nth-child(5) { grid-column: 1/-1; }
+  .case-studies { padding: 56px 20px; }
+  .cs-card-header { padding: 32px 28px 0 !important; }
+  .cs-stats-row { grid-template-columns: 1fr 1fr; }
+  .cs-stats-row .cs-stat:last-child { grid-column: 1/-1; }
+  .testi-wall { padding: 56px 20px; }
+  .twall-grid { columns: 1; }
+  .industries-banner { grid-template-columns: repeat(2, 1fr); padding: 40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">Focal Agencies</a>
+  <div class="nav-center">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="results.html" class="nav-link active">Results</a>
+    <a href="about.html" class="nav-link">About</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Book a Call <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="services.html" class="nav-link">Services</a>
+  <a href="results.html" class="nav-link active">Results</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-cta btn-primary">Book a Call →</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-label label reveal">Proof of Work</div>
+  <h1 class="page-hero-title reveal d1">Real operators.<br><em>Real revenue.</em></h1>
+  <p class="page-hero-sub reveal d2">We don't take our word for it. Here are the actual outcomes — numbers, quotes, and case studies from the businesses we've deployed for.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active">All Industries</button>
+  <button class="filter-btn">Real Estate</button>
+  <button class="filter-btn">Hospitality</button>
+  <button class="filter-btn">Healthcare</button>
+  <button class="filter-btn">E-Commerce</button>
+  <button class="filter-btn">Education</button>
+  <button class="filter-btn">Logistics</button>
+</div>
+
+<!-- METRICS BAND -->
+<div class="metrics-band">
+  <div class="metric-cell reveal">
+    <div class="metric-val">14<sup>d</sup></div>
+    <div class="metric-lbl">Average Launch Time</div>
+  </div>
+  <div class="metric-cell reveal d1">
+    <div class="metric-val">6</div>
+    <div class="metric-lbl">Services We Offer</div>
+  </div>
+  <div class="metric-cell reveal d2">
+    <div class="metric-val">24<sup>/7</sup></div>
+    <div class="metric-lbl">AI Availability</div>
+  </div>
+  <div class="metric-cell reveal d3">
+    <div class="metric-val">&lt;2<sup>s</sup></div>
+    <div class="metric-lbl">Site Load Time</div>
+  </div>
+  <div class="metric-cell reveal d4">
+    <div class="metric-val">0</div>
+    <div class="metric-lbl">Vendor Lock-In</div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="case-studies">
+  <div class="label reveal">Case Studies</div>
+  <h2 class="display display-md reveal d1" style="margin-top:18px;">Deployments. Outcomes.<br><em>Real numbers.</em></h2>
+
+  <div class="cs-grid">
+    <!-- AI INVOICE WORKFLOW -->
+    <div class="cs-card reveal">
+      <div class="cs-card-header">
+        <div class="cs-sector">AI Automation · Workflow</div>
+        <h3 class="cs-client">AI Invoice Extraction</h3>
+        <p class="cs-tagline">A production AI workflow that extracts, processes, and merges invoice data automatically — zero manual entry, fully automated pipeline.</p>
+      </div>
+      <div class="cs-stats-row">
+        <div class="cs-stat"><div class="cs-stat-val">0</div><div class="cs-stat-lbl">Manual steps</div></div>
+        <div class="cs-stat"><div class="cs-stat-val">100%</div><div class="cs-stat-lbl">Automated</div></div>
+        <div class="cs-stat"><div class="cs-stat-val">Live</div><div class="cs-stat-lbl">Demo on YouTube</div></div>
+      </div>
+    </div>
+
+    <!-- UGC AD -->
+    <div class="cs-card reveal d1">
+      <div class="cs-card-header">
+        <div class="cs-sector">Ads · Creative</div>
+        <h3 class="cs-client">UGC Campaign</h3>
+        <p class="cs-tagline">User-generated content creative produced for a paid media campaign — authentic, high-converting, and built to perform on Meta and TikTok.</p>
+      </div>
+      <div class="cs-stats-row">
+        <div class="cs-stat"><div class="cs-stat-val">Meta</div><div class="cs-stat-lbl">Primary platform</div></div>
+        <div class="cs-stat"><div class="cs-stat-val">UGC</div><div class="cs-stat-lbl">Format</div></div>
+        <div class="cs-stat"><div class="cs-stat-val">Paid</div><div class="cs-stat-lbl">Ad creative</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<div class="industries-banner">
+  <div class="ind-item"><div class="ind-icon">🏠</div><div class="ind-name">Real Estate</div></div>
+  <div class="ind-item"><div class="ind-icon">🏨</div><div class="ind-name">Hospitality</div></div>
+  <div class="ind-item"><div class="ind-icon">🏥</div><div class="ind-name">Healthcare</div></div>
+  <div class="ind-item"><div class="ind-icon">📦</div><div class="ind-name">E-Commerce</div></div>
+  <div class="ind-item"><div class="ind-icon">🎓</div><div class="ind-name">Education</div></div>
+  <div class="ind-item"><div class="ind-icon">🚗</div><div class="ind-name">Auto</div></div>
+</div>
+
+<!-- REAL WORK SECTION -->
+<section class="testi-wall">
+  <div class="label reveal">Real Work</div>
+  <h2 class="display display-md reveal d1" style="margin-top:18px;">See what we<br><em>actually built.</em></h2>
+
+  <style>
+    /* Wellship card */
+    .wellship-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border: 1px solid var(--ivory-d); margin-top: 56px; overflow: hidden;
+      transition: border-color 0.25s; text-decoration: none; color: inherit;
+    }
+    .wellship-card:hover { border-color: var(--vermil); }
+    .wc-left { padding: 52px 48px; background: var(--cream); }
+    .wc-right { background: var(--navy); padding: 52px 48px; display: flex; flex-direction: column; justify-content: flex-start; }
+    .wc-site-preview { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f4f4f4; border-radius: 4px; }
+    .wc-site-preview iframe { position: absolute; top: 0; left: 0; width: 200%; height: 200%; border: none; transform: scale(0.5); transform-origin: top left; pointer-events: none; z-index: 2; }
+    .wc-site-preview .preview-fallback { position: absolute; inset: 0; background: linear-gradient(135deg,#f0ede8 0%,#e8e2d9 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; z-index: 1; }
+    .wc-site-preview .pf-url { font-family: var(--f-label); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vermil); }
+    .wc-site-preview .pf-name { font-family: var(--f-display); font-size: 28px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+    .wc-site-preview .pf-sub { font-size: 12px; color: var(--ink-40); font-weight: 300; }
+    .wc-site-preview.iframe-loaded .preview-fallback { display: none; }
+    .wc-tag { font-family: var(--f-label); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermil); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .wc-tag::before { content:''; width:20px; height:2px; background:var(--vermil); flex-shrink:0; }
+    .wc-name { font-family: var(--f-display); font-size: clamp(28px, 3vw, 44px); font-weight: 400; color: var(--ink); letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; margin-bottom: 16px; }
+    .wc-desc { font-size: 15px; font-weight: 300; color: var(--ink-60); line-height: 1.75; margin-bottom: 28px; }
+    .wc-visit { font-family: var(--f-label); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vermil); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .wc-visit svg { transition: transform 0.2s; }
+    .wellship-card:hover .wc-visit svg { transform: translateX(4px); }
+    .wc-metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); margin-bottom: 28px; }
+    .wc-metric { padding: 20px; background: rgba(255,255,255,0.04); }
+    .wc-m-val { font-family: var(--f-display); font-size: 32px; font-weight: 400; color: #fff; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; }
+    .wc-m-lbl { font-family: var(--f-label); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 6px; }
+    .wc-yt-link { display: flex; align-items: center; gap: 10px; font-family: var(--f-label); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.12); transition: border-color 0.2s, color 0.2s; }
+    .wc-yt-link:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+    /* video grid */
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .video-card { border: 1px solid var(--ivory-d); background: var(--ink); overflow: hidden; position: relative; cursor: pointer; transition: border-color 0.25s; }
+    .video-card:hover { border-color: var(--vermil); }
+    .video-card video { width: 100%; display: block; aspect-ratio: 9/16; object-fit: cover; cursor: pointer; }
+    .video-label { padding: 14px 18px; background: var(--cream); font-family: var(--f-label); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-60); border-top: 1px solid var(--ivory-d); }
+    @media (max-width: 1100px) {
+      .wellship-card { grid-template-columns: 1fr; }
+      .wc-right { padding: 40px 36px; }
+      .wc-left { padding: 40px 36px; }
+      .video-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- WELLSHIP CASE STUDY -->
+  <div class="wellship-card reveal">
+    <div class="wc-left">
+      <div class="wc-tag">Healthcare · Live Client</div>
+      <div class="wc-name">Wellship Clinic</div>
+      <p class="wc-desc">We built a high-converting website for Wellship Clinic — a modern healthcare brand. Fast, mobile-first, and designed to turn visitors into booked appointments from the first scroll.</p>
+      <a href="https://wellshipclinic.com" target="_blank" rel="noopener" class="wc-visit">
+        Visit wellshipclinic.com
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="wc-right">
+      <div class="wc-site-preview">
+        <iframe class="site-preview-frame" src="https://wellshipclinic.com" title="Wellship Clinic website preview" scrolling="no" tabindex="-1"></iframe>
+        <div class="preview-fallback">
+          <div class="pf-url">wellshipclinic.com</div>
+          <div class="pf-name">Wellship Clinic</div>
+          <div class="pf-sub">Healthcare · Live Site</div>
+        </div>
+      </div>
+      <div class="wc-metric-grid" style="margin-top:20px;">
+        <div class="wc-metric"><div class="wc-m-val">&lt;2s</div><div class="wc-m-lbl">Load Time</div></div>
+        <div class="wc-metric"><div class="wc-m-val">100%</div><div class="wc-m-lbl">Mobile First</div></div>
+        <div class="wc-metric"><div class="wc-m-val">Live</div><div class="wc-m-lbl">In Production</div></div>
+        <div class="wc-metric"><div class="wc-m-val">Custom</div><div class="wc-m-lbl">Full Build</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO SHOWCASE -->
+  <div class="label reveal" style="margin-top:80px;">Work Reels</div>
+  <h3 class="display display-sm reveal d1" style="margin-top:18px;max-width:600px;">Our builds,<br><em>in motion.</em></h3>
+  <div class="video-grid">
+    <div class="video-card reveal">
+      <video controls preload="metadata" poster="">
+        <source src="videos/ugc.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">UGC Creative</div>
+    </div>
+    <div class="video-card reveal d1">
+      <video controls preload="metadata" poster="">
+        <source src="videos/recode-ad.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">Recode Ad</div>
+    </div>
+    <div class="video-card reveal d2">
+      <video controls preload="metadata" poster="">
+        <source src="videos/ai-invoice-workflow.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">AI Invoice Workflow</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div>
+    <h2 class="cta-band-title">Ready to be the<br><em>next case study?</em></h2>
+    <p class="cta-band-sub">Every deployment starts with a 30-minute discovery call. We'll identify your biggest opportunity and map out exactly what we'd build before we touch a line of code.</p>
+  </div>
+  <div class="cta-band-actions">
+    <a href="contact.html" class="btn btn-primary btn-lg">Book a Consultation</a>
+    <a href="services.html" class="btn btn-outline-white">View Services</a>
+    <div class="cta-note">Response within 24h · No lock-in</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">Focal Agencies</a>
+      <p class="footer-tagline">Websites, AI voice, sales funnels, ads, SaaS, and scraper pipelines — built fast, deployed live.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">Li</a><a href="#" class="footer-social">YT</a><a href="#" class="footer-social">X</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="services.html#web">Website Development</a></li>
+        <li><a href="services.html#voice">AI Voice</a></li>
+        <li><a href="services.html#funnels">Sales Funnels</a></li>
+        <li><a href="services.html#ads">Ads</a></li>
+        <li><a href="services.html#saas">SaaS Development</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="results.html">Case Studies</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:Archit@focalagencies.com">Archit@focalagencies.com</a></li>
+        <li><a href="contact.html">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Focal Agencies. All rights reserved.</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Filter buttons (UI only — wire to real filter logic if needed)
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

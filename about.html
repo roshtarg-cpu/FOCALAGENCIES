@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Focal Agencies</title>
+<meta name="description" content="Bootstrapped, founder-led, and built to ship real results. The story behind Focal Agencies.">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ── ABOUT PAGE ── */
+
+/* manifesto section */
+.manifesto {
+  padding: 100px 52px;
+  background: var(--navy);
+  position: relative; overflow: hidden;
+}
+.manifesto-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 85% 30%, rgba(193,59,31,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(26,79,204,0.06) 0%, transparent 50%);
+}
+.manifesto-inner {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+.manifesto-left {}
+.manifesto-right {
+  border-left: 1px solid rgba(255,255,255,0.08);
+  padding-left: 80px;
+}
+.manifesto-title {
+  font-family: var(--f-display);
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 900; line-height: 0.94; letter-spacing: -0.03em; color: #fff;
+}
+.manifesto-title em { font-style: italic; color: var(--vermil-l); }
+.manifesto-body {
+  font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.55);
+  line-height: 1.8; margin-top: 32px; max-width: 480px;
+}
+.manifesto-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-top: 48px;
+}
+.m-stat { padding: 28px 24px; }
+.m-stat-val {
+  font-family: var(--f-display); font-size: 40px; font-weight: 900;
+  color: #fff; line-height: 1; letter-spacing: -0.025em;
+}
+.m-stat-val sup { font-size: 0.45em; color: var(--vermil-l); vertical-align: super; }
+.m-stat-lbl {
+  font-family: var(--f-label); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-top: 8px;
+}
+.manifesto-quote {
+  font-family: var(--f-display); font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 700; font-style: italic;
+  color: rgba(255,255,255,0.85); line-height: 1.45; margin-bottom: 28px;
+}
+.manifesto-quote-author {
+  font-family: var(--f-label); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.manifesto-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+.m-tag {
+  font-family: var(--f-label); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px;
+  transition: background 0.2s, color 0.2s;
+}
+.m-tag:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* story section */
+.story { padding: 100px 52px; }
+.story-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.story-sticky { position: sticky; top: 100px; }
+.story-chapter {
+  padding-bottom: 64px; border-bottom: 1px solid var(--ivory-d); margin-bottom: 64px;
+}
+.story-chapter:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sc-year {
+  font-family: var(--f-display); font-size: 72px; font-weight: 900;
+  color: var(--ivory-d); line-height: 1; letter-spacing: -0.04em;
+  margin-bottom: -8px;
+}
+.sc-label {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermil);
+  margin-bottom: 14px;
+}
+.sc-title {
+  font-family: var(--f-display); font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 900; color: var(--ink); line-height: 1.12; margin-bottom: 16px; letter-spacing: -0.015em;
+}
+.sc-body {
+  font-size: 15px; font-weight: 300; color: var(--ink-60); line-height: 1.8;
+}
+
+/* values */
+.values { padding: 100px 52px; background: var(--ivory); }
+.values-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; border: 1px solid var(--ivory-d);
+  background: var(--ivory-d); margin-top: 56px;
+}
+.value-card {
+  background: var(--cream); padding: 48px 40px;
+  transition: background 0.25s;
+}
+.value-card:hover { background: var(--ivory); }
+.value-num {
+  font-family: var(--f-display); font-size: 52px; font-weight: 900;
+  color: var(--ivory-d); line-height: 1; margin-bottom: 16px; letter-spacing: -0.03em;
+}
+.value-title {
+  font-family: var(--f-label); font-size: 17px; font-weight: 700;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.3;
+}
+.value-desc {
+  font-size: 14px; font-weight: 300; color: var(--ink-60); line-height: 1.75;
+}
+
+/* approach section */
+.approach { padding: 100px 52px; }
+.approach-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px;
+}
+.approach-steps { display: flex; flex-direction: column; gap: 0; }
+.approach-step {
+  display: flex; gap: 24px; align-items: flex-start;
+  padding: 28px 0; border-bottom: 1px solid var(--ivory-d);
+  transition: padding-left 0.25s var(--ease-out);
+  cursor: default;
+}
+.approach-step:hover { padding-left: 12px; }
+.approach-step:first-child { padding-top: 0; }
+.approach-step:last-child { border-bottom: none; }
+.as-num {
+  font-family: var(--f-display); font-size: 20px; font-weight: 900;
+  color: var(--ivory-dd); min-width: 36px; flex-shrink: 0; margin-top: 2px;
+  transition: color 0.25s;
+}
+.approach-step:hover .as-num { color: var(--vermil); }
+.as-title { font-family: var(--f-label); font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.as-body { font-size: 13.5px; font-weight: 300; color: var(--ink-60); line-height: 1.7; }
+.approach-visual {
+  background: var(--navy); padding: 52px 48px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.av-title {
+  font-family: var(--f-display); font-size: 28px; font-weight: 900;
+  color: #fff; line-height: 1.1; margin-bottom: 8px;
+}
+.av-pill {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: rgba(255,255,255,0.06);
+  border-left: 3px solid var(--vermil);
+}
+.av-pill-text {
+  font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.5;
+}
+.av-pill-text strong { color: #fff; font-weight: 600; }
+
+/* certifications */
+.certifications { padding: 80px 52px; background: var(--ivory); }
+.cert-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 12px; margin-top: 44px;
+}
+.cert-pill {
+  background: var(--cream); border: 1px solid var(--ivory-d);
+  padding: 20px 16px; text-align: center;
+  font-family: var(--f-label); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--ink-60);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.cert-pill:hover { border-color: var(--ink-20); color: var(--ink); background: var(--ivory); }
+
+@media (max-width: 1100px) {
+  .manifesto { padding: 72px 28px; }
+  .manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
+  .manifesto-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-left: 0; padding-top: 48px; }
+  .story { padding: 72px 28px; }
+  .story-inner { grid-template-columns: 1fr; }
+  .story-sticky { position: static; }
+  .values { padding: 72px 28px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .approach { padding: 72px 28px; }
+  .approach-inner { grid-template-columns: 1fr; }
+  .certifications { padding: 64px 28px; }
+  .cert-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .manifesto { padding: 56px 20px; }
+  .manifesto-stat-grid { grid-template-columns: 1fr 1fr; }
+  .story { padding: 56px 20px; }
+  .values { padding: 56px 20px; }
+  .values-grid { grid-template-columns: 1fr; }
+  .approach { padding: 56px 20px; }
+  .certifications { padding: 52px 20px; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">Focal Agencies</a>
+  <div class="nav-center">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="results.html" class="nav-link">Results</a>
+    <a href="about.html" class="nav-link active">About</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Book a Call <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="services.html" class="nav-link">Services</a>
+  <a href="results.html" class="nav-link">Results</a>
+  <a href="about.html" class="nav-link active">About</a>
+  <a href="contact.html" class="nav-cta btn-primary">Book a Call →</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-label label reveal">Our Story</div>
+  <h1 class="page-hero-title reveal d1">No investors.<br>No shortcuts.<br><em>Just results.</em></h1>
+  <p class="page-hero-sub reveal d2">Focal Agencies is completely bootstrapped. Every system we ship had to work in the real world, for real businesses, because there was no outside money to hide behind.</p>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-bg"></div>
+  <div class="manifesto-inner">
+    <div class="manifesto-left reveal-left">
+      <h2 class="manifesto-title">Built to<br><em>earn it.</em></h2>
+      <p class="manifesto-body">That constraint is our edge. We build what pays for itself, because from day one — it had to. No investor runway to burn. No growth-at-all-costs playbook. Just websites, automations, and software that generate a return you can point to in the first month.</p>
+      <div class="manifesto-stat-grid">
+        <div class="m-stat">
+          <div class="m-stat-val">14<sup>d</sup></div>
+          <div class="m-stat-lbl">Launch Timeline</div>
+        </div>
+        <div class="m-stat">
+          <div class="m-stat-val">6</div>
+          <div class="m-stat-lbl">Services We Deliver</div>
+        </div>
+        <div class="m-stat">
+          <div class="m-stat-val">0</div>
+          <div class="m-stat-lbl">Vendor Lock-In</div>
+        </div>
+        <div class="m-stat">
+          <div class="m-stat-val">0</div>
+          <div class="m-stat-lbl">Investor Funding</div>
+        </div>
+      </div>
+    </div>
+    <div class="manifesto-right reveal-right">
+      <p class="manifesto-quote">"Every system we ship had to work in the real world — because there was no outside money to hide behind. That constraint is our edge."</p>
+      <div class="manifesto-quote-author">Focal Agencies — Company Manifesto</div>
+      <div class="manifesto-tags">
+        <span class="m-tag">Bootstrapped</span>
+        <span class="m-tag">Founder-Led</span>
+        <span class="m-tag">Ships Real Products</span>
+        <span class="m-tag">No Slideware</span>
+        <span class="m-tag">Ships Fast</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="story-inner">
+    <div class="story-sticky reveal-left">
+      <div class="label">The Journey</div>
+      <h2 class="display display-md" style="margin-top:18px;">How we got <em style="font-style:italic;color:var(--vermil);">here.</em></h2>
+      <p style="font-size:15px;font-weight:300;color:var(--ink-60);line-height:1.8;margin-top:20px;">From the first deployment to a hundred clients across six continents — this is the story of building something that actually has to work.</p>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:32px;display:inline-flex;">Work With Us →</a>
+    </div>
+    <div class="reveal-right">
+      <div class="story-chapter">
+        <div class="sc-year">2023</div>
+        <div class="sc-label">The Beginning</div>
+        <h3 class="sc-title">First deployment. First proof.</h3>
+        <p class="sc-body">Focal started with a single belief: AI technology had become good enough to genuinely move businesses forward — but almost no one was deploying it properly. We took on our first client, built the system, and shipped it. It worked. That was the proof of concept, and the only mandate we've needed since.</p>
+      </div>
+      <div class="story-chapter">
+        <div class="sc-year">2024</div>
+        <div class="sc-label">The Expansion</div>
+        <h3 class="sc-title">More services. More industries.</h3>
+        <p class="sc-body">We expanded from AI voice into websites, funnels, ads, SaaS development, and scraper pipelines — each service added because a client needed it and we knew we could do it properly. We built and shipped across healthcare, e-commerce, hospitality, and more. Each deployment tightened the playbook.</p>
+      </div>
+      <div class="story-chapter">
+        <div class="sc-year">2025</div>
+        <div class="sc-label">Now</div>
+        <h3 class="sc-title">Building in public. Shipping real work.</h3>
+        <p class="sc-body">Focal Agencies is still bootstrapped, still founder-led, and still selective about what we take on. We build what we can stand behind — real websites, real automations, real systems. The discipline that made us is still the discipline that keeps us honest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="label reveal">What We Stand For</div>
+  <h2 class="display display-md reveal d1" style="margin-top:18px;">The principles that<br><em>don't bend.</em></h2>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <div class="value-title">Clarity Before Code</div>
+      <div class="value-desc">Scope, deliverables, and timeline are agreed in writing before we build a single thing. No surprises, no scope creep, no excuses.</div>
+    </div>
+    <div class="value-card reveal d1">
+      <div class="value-num">02</div>
+      <div class="value-title">Real World or Nothing</div>
+      <div class="value-desc">We don't build slideware. We don't do pilots that never go live. Every system we deploy operates in production, for real customers, generating real revenue from day one.</div>
+    </div>
+    <div class="value-card reveal d2">
+      <div class="value-num">03</div>
+      <div class="value-title">Speed as a Feature</div>
+      <div class="value-desc">Rapid is in our DNA. Pilot agents go live in 14 days. We don't take 3-month consulting engagements to figure out what you need — we move fast and prove it fast.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">04</div>
+      <div class="value-title">Systems That Compound</div>
+      <div class="value-desc">Good AI gets better over time. We build systems that learn, improve, and compound — so your results in month six are materially better than month one, without added cost.</div>
+    </div>
+    <div class="value-card reveal d1">
+      <div class="value-num">05</div>
+      <div class="value-title">Complete Transparency</div>
+      <div class="value-desc">Every call is logged. Every metric is reported. Every cost is itemised. You know exactly what your system is doing, what it's costing, and what it's returning — every single week.</div>
+    </div>
+    <div class="value-card reveal d2">
+      <div class="value-num">06</div>
+      <div class="value-title">Founder-to-Founder</div>
+      <div class="value-desc">Partners at Focal work hands-on with founders and operators — not handed off to junior account managers. The expertise you see in the pitch is the expertise that builds your system.</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach">
+  <div class="label reveal">How We Think</div>
+  <h2 class="display display-md reveal d1" style="margin-top:18px;max-width:700px;">The approach behind every<br><em>deployment.</em></h2>
+  <div class="approach-inner">
+    <div class="approach-steps reveal-left">
+      <div class="approach-step">
+        <div class="as-num">01</div>
+        <div><div class="as-title">Understand the business first</div><div class="as-body">We spend time understanding exactly how you make money, where you lose it, and which operations create the most friction. No generic templates.</div></div>
+      </div>
+      <div class="approach-step">
+        <div class="as-num">02</div>
+        <div><div class="as-title">Scope agreed in writing</div><div class="as-body">Before a single line of code is written, you receive a clear scope document — deliverables, integrations, timeline, and pricing. No ambiguity, no moving goalposts.</div></div>
+      </div>
+      <div class="approach-step">
+        <div class="as-num">03</div>
+        <div><div class="as-title">Deploy with precision</div><div class="as-body">We build, test on real calls, get your approval, and go live. The 14-day pilot timeline is our standard — not a promise, a process.</div></div>
+      </div>
+      <div class="approach-step">
+        <div class="as-num">04</div>
+        <div><div class="as-title">Report and improve weekly</div><div class="as-body">Weekly reports cover call performance, conversion rates, booking data, and cost per acquisition. We tune continuously — the system gets better, not static.</div></div>
+      </div>
+      <div class="approach-step">
+        <div class="as-num">05</div>
+        <div><div class="as-title">Scale what works</div><div class="as-body">Once the pilot proves its ROI, we expand — more agents, more channels, deeper automation. Growth that's funded by the returns of what came before it.</div></div>
+      </div>
+    </div>
+    <div class="approach-visual reveal-right">
+      <div class="av-title">What you get at every stage.</div>
+      <div class="av-pill"><div class="av-pill-text"><strong>Discovery</strong> — Your revenue map and opportunity analysis in 30 minutes.</div></div>
+      <div class="av-pill"><div class="av-pill-text"><strong>Design</strong> — Call flows, voice profile, integration blueprint, and full scope document.</div></div>
+      <div class="av-pill"><div class="av-pill-text"><strong>Build</strong> — Working system tested on real calls before you ever approve launch.</div></div>
+      <div class="av-pill"><div class="av-pill-text"><strong>Live</strong> — Your agent answers calls, books appointments, and logs everything.</div></div>
+      <div class="av-pill"><div class="av-pill-text"><strong>Weekly</strong> — Performance report lands in your inbox every Monday morning.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certifications">
+  <div class="label reveal">Certified On</div>
+  <h2 class="display display-sm reveal d1" style="margin-top:18px;">The frontier platforms we <em style="font-style:italic;color:var(--vermil);">build on.</em></h2>
+  <div class="cert-grid">
+    <div class="cert-pill reveal">Claude / Anthropic</div>
+    <div class="cert-pill reveal d1">OpenAI</div>
+    <div class="cert-pill reveal d2">ElevenLabs</div>
+    <div class="cert-pill reveal d3">n8n Automation</div>
+    <div class="cert-pill reveal d4">GoHighLevel</div>
+    <div class="cert-pill reveal">VAPI</div>
+    <div class="cert-pill reveal d1">Retell AI</div>
+    <div class="cert-pill reveal d2">Twilio</div>
+    <div class="cert-pill reveal d3">HubSpot</div>
+    <div class="cert-pill reveal d4">Salesforce</div>
+    <div class="cert-pill reveal">Gemini</div>
+    <div class="cert-pill reveal d1">Cursor</div>
+    <div class="cert-pill reveal d2">Make / Zapier</div>
+    <div class="cert-pill reveal d3">Perplexity</div>
+    <div class="cert-pill reveal d4">WhatsApp Business</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div>
+    <h2 class="cta-band-title">Let's build something<br><em>that actually works.</em></h2>
+    <p class="cta-band-sub">30 minutes with a founder — not a sales rep. We'll look at your operation, your numbers, and tell you honestly whether AI makes sense for where you are right now.</p>
+  </div>
+  <div class="cta-band-actions">
+    <a href="contact.html" class="btn btn-primary btn-lg">Book a Discovery Call</a>
+    <a href="results.html" class="btn btn-outline-white">See Our Results</a>
+    <div class="cta-note">Founder-to-founder · No obligation</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">Focal Agencies</a>
+      <p class="footer-tagline">Websites, AI voice, sales funnels, ads, SaaS, and scraper pipelines — built fast, deployed live.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">Li</a><a href="#" class="footer-social">YT</a><a href="#" class="footer-social">X</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="services.html#web">Website Development</a></li>
+        <li><a href="services.html#voice">AI Voice</a></li>
+        <li><a href="services.html#funnels">Sales Funnels</a></li>
+        <li><a href="services.html#ads">Ads</a></li>
+        <li><a href="services.html#saas">SaaS Development</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="results.html">Case Studies</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:Archit@focalagencies.com">Archit@focalagencies.com</a></li>
+        <li><a href="contact.html">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Focal Agencies. All rights reserved.</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

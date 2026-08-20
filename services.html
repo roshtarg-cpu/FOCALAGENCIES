@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Focal Agencies</title>
+<meta name="description" content="AI voice agents, operating systems, conversion websites, outbound qualification, back-office automation, and CRM integrations.">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ── SERVICES PAGE ── */
+.page-hero { padding-bottom: 0; }
+.page-hero-inner { padding-bottom: 80px; }
+
+/* service tabs nav */
+.service-tabs-wrap {
+  background: var(--ivory);
+  border-top: 1px solid var(--ivory-d);
+  border-bottom: 1px solid var(--ivory-d);
+  position: sticky; top: 72px; z-index: 100;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.service-tabs-wrap::-webkit-scrollbar { display: none; }
+.service-tabs {
+  display: flex; align-items: stretch;
+  padding: 0 52px; gap: 0; min-width: max-content;
+}
+.service-tab {
+  font-family: var(--f-label); font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-40); text-decoration: none;
+  padding: 18px 24px;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap; display: flex; align-items: center; gap: 9px;
+}
+.service-tab:hover { color: var(--ink); }
+.service-tab.tab-active, .service-tab:target { color: var(--vermil); border-color: var(--vermil); }
+.service-tab .tab-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--ivory-d); color: var(--ink-40);
+  font-size: 10px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background 0.2s, color 0.2s;
+}
+.service-tab.tab-active .tab-num { background: var(--vermil); color: #fff; }
+
+/* service blocks */
+.service-block {
+  scroll-margin-top: 140px;
+  padding: 100px 52px;
+  border-bottom: 1px solid var(--ivory-d);
+}
+.service-block:nth-child(even) { background: var(--ivory); }
+
+.sb-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.sb-inner.flip { direction: rtl; }
+.sb-inner.flip > * { direction: ltr; }
+
+.sb-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--ivory-d); color: var(--vermil);
+  padding: 5px 14px; margin-bottom: 24px;
+}
+.sb-num-tag { color: var(--ink-30); }
+
+.sb-title {
+  font-family: var(--f-display);
+  font-size: clamp(34px, 3.8vw, 52px);
+  font-weight: 900; line-height: 1.06; letter-spacing: -0.02em; color: var(--ink);
+  margin-bottom: 20px;
+}
+.sb-title em { font-style: italic; color: var(--vermil); }
+
+.sb-desc {
+  font-size: 16px; font-weight: 300; color: var(--ink-60); line-height: 1.8; margin-bottom: 36px;
+}
+
+.sb-features {
+  display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px;
+}
+.sb-feature {
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 14.5px; color: var(--ink-80); line-height: 1.55;
+}
+.sb-feature-icon {
+  width: 32px; height: 32px; background: var(--ivory);
+  border: 1px solid var(--ivory-d);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px; color: var(--vermil);
+}
+.sb-feature-text strong { color: var(--ink); font-weight: 600; display: block; font-size: 14px; }
+.sb-feature-text span { font-weight: 300; color: var(--ink-60); font-size: 13.5px; }
+
+/* visual panel */
+.sb-visual {
+  position: relative;
+}
+.sb-card-stack {
+  position: relative; padding: 8px 8px 0;
+}
+.sb-main-card {
+  background: var(--navy); padding: 44px 40px;
+  position: relative; z-index: 2;
+}
+.sb-card-shadow {
+  position: absolute; bottom: -8px; left: 8px; right: -8px; top: 8px;
+  background: var(--vermil); z-index: 1;
+}
+.sb-metric-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(255,255,255,0.1); margin-top: 28px;
+}
+.sb-metric {
+  padding: 20px; background: rgba(255,255,255,0.05);
+}
+.sb-metric-val {
+  font-family: var(--f-display); font-size: 32px; font-weight: 900;
+  color: #fff; line-height: 1; letter-spacing: -0.02em;
+}
+.sb-metric-val sup { font-size: 0.5em; color: var(--vermil-l); vertical-align: super; }
+.sb-metric-lbl {
+  font-family: var(--f-label); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-top: 6px;
+}
+.sb-card-title {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+.sb-card-value {
+  font-family: var(--f-display); font-size: 44px; font-weight: 900;
+  color: #fff; line-height: 1; letter-spacing: -0.03em;
+}
+.sb-card-value sup { font-size: 0.45em; color: var(--vermil-l); vertical-align: super; }
+.sb-industries {
+  margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;
+}
+.industry-tag {
+  font-family: var(--f-label); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.07);
+  padding: 4px 12px; border-radius: 2px;
+}
+
+/* use cases grid */
+.use-cases {
+  padding: 100px 52px; background: var(--ivory);
+  border-bottom: 1px solid var(--ivory-d);
+}
+.uc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; border: 1px solid var(--ivory-d); background: var(--ivory-d);
+  margin-top: 56px;
+}
+.uc-card {
+  background: var(--cream); padding: 44px 36px;
+  transition: background 0.25s;
+  position: relative;
+}
+.uc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--vermil);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+.uc-card:hover { background: var(--ivory); }
+.uc-card:hover::before { transform: scaleX(1); }
+.uc-sector {
+  font-family: var(--f-label); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--vermil);
+  margin-bottom: 16px;
+}
+.uc-title { font-family: var(--f-label); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 12px; line-height: 1.3; }
+.uc-desc { font-size: 13.5px; font-weight: 300; color: var(--ink-60); line-height: 1.72; margin-bottom: 20px; }
+.uc-stat {
+  font-family: var(--f-display); font-size: 28px; font-weight: 900; color: var(--ink); letter-spacing: -0.02em;
+}
+.uc-stat-lbl { font-family: var(--f-label); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-40); margin-top: 4px; }
+
+/* stack section */
+.tech-stack {
+  padding: 80px 52px;
+  background: var(--navy);
+}
+.tech-grid {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px;
+}
+.tech-pill {
+  font-family: var(--f-label); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 9px 20px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.tech-pill:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+@media (max-width: 1100px) {
+  .service-tabs { padding: 0 28px; }
+  .service-block { padding: 72px 28px; }
+  .sb-inner { grid-template-columns: 1fr; gap: 48px; }
+  .sb-inner.flip { direction: ltr; }
+  .use-cases { padding: 72px 28px; }
+  .uc-grid { grid-template-columns: 1fr 1fr; }
+  .tech-stack { padding: 64px 28px; }
+}
+@media (max-width: 640px) {
+  .service-tabs { padding: 0 20px; }
+  .service-block { padding: 56px 20px; }
+  .use-cases { padding: 56px 20px; }
+  .uc-grid { grid-template-columns: 1fr; }
+  .tech-stack { padding: 52px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">Focal Agencies</a>
+  <div class="nav-center">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link active">Services</a>
+    <a href="results.html" class="nav-link">Results</a>
+    <a href="about.html" class="nav-link">About</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Book a Call <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="services.html" class="nav-link active">Services</a>
+  <a href="results.html" class="nav-link">Results</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-cta btn-primary">Book a Call →</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-label label reveal">What We Build</div>
+    <h1 class="page-hero-title reveal d1">Six services. One goal:<br><em>your revenue grows.</em></h1>
+    <p class="page-hero-sub reveal d2">We don't sell tools. We install systems purpose-built around the exact ways your business loses time, misses calls, and leaves money on the table.</p>
+  </div>
+</div>
+
+<!-- SERVICE TABS -->
+<div class="service-tabs-wrap">
+  <div class="service-tabs">
+    <a href="#web" class="service-tab tab-active">
+      <span class="tab-num">01</span> Web Dev
+    </a>
+    <a href="#voice" class="service-tab">
+      <span class="tab-num">02</span> AI Voice
+    </a>
+    <a href="#funnels" class="service-tab">
+      <span class="tab-num">03</span> Sales Funnels
+    </a>
+    <a href="#ads" class="service-tab">
+      <span class="tab-num">04</span> Ads
+    </a>
+    <a href="#saas" class="service-tab">
+      <span class="tab-num">05</span> SaaS Dev
+    </a>
+    <a href="#scraper" class="service-tab">
+      <span class="tab-num">06</span> Scrapers
+    </a>
+  </div>
+</div>
+
+<!-- 01 WEBSITE DEVELOPMENT -->
+<section class="service-block" id="web">
+  <div class="sb-inner">
+    <div class="reveal-left">
+      <div class="sb-tag"><span class="sb-num-tag">01 —</span> Website Development</div>
+      <h2 class="sb-title">Your website should<br><em>close deals.</em></h2>
+      <p class="sb-desc">High-performance websites built to generate qualified leads and real revenue — not just look good. Some of our sites have driven over $1M in direct client sales. Fast, mobile-first, SEO-optimised, and designed to convert from the first scroll.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Conversion-first architecture</strong><span>Every section, headline, and CTA engineered for the decision you want visitors to make.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Performance-grade build</strong><span>Sub-2s load times. Mobile-first. Optimised for Core Web Vitals and organic search.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Custom design — no templates</strong><span>Built from scratch around your brand, your offer, and your market. Nothing generic.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>From $1,000 one-time</strong><span>No bloated retainers. You own the site outright. Clear scope and pricing before we start.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Get a Website Quote →</a>
+    </div>
+    <div class="reveal-right">
+      <div class="sb-card-stack">
+        <div class="sb-card-shadow" style="background:var(--ivory-d);"></div>
+        <div class="sb-main-card">
+          <div class="sb-card-title">Client Website Results</div>
+          <div class="sb-card-value">$1M<sup>+</sup></div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;font-weight:300;">In direct sales driven through Focal-built websites.</p>
+          <div class="sb-metric-row">
+            <div class="sb-metric">
+              <div class="sb-metric-val">&lt;2<sup>s</sup></div>
+              <div class="sb-metric-lbl">Load Time</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">3<sup>×</sup></div>
+              <div class="sb-metric-lbl">More Leads</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">$1k</div>
+              <div class="sb-metric-lbl">From One-Time</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">14<sup>d</sup></div>
+              <div class="sb-metric-lbl">Average Delivery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 AI VOICE -->
+<section class="service-block" id="voice">
+  <div class="sb-inner flip">
+    <div class="reveal-right">
+      <div class="sb-tag"><span class="sb-num-tag">02 —</span> AI Voice</div>
+      <h2 class="sb-title">Never miss a call.<br><em>Ever again.</em></h2>
+      <p class="sb-desc">Every inbound call answered instantly, in your customer's language, day or night — without a human on the other end. Our voice agents qualify, nurture, and book appointments that land directly in your calendar.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Natural voice synthesis</strong><span>Callers genuinely cannot tell it's AI — trained on your exact tone and script.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Multilingual by default</strong><span>Speaks your customer's language natively — no language barrier, no lost callers.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Calendar integration</strong><span>Qualified appointments booked in real time — no manual follow-up required.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Call scoring & reporting</strong><span>Every call logged, transcribed, and scored. Weekly reports with conversion data.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Deploy a Voice Agent →</a>
+    </div>
+    <div class="reveal-left">
+      <div class="sb-card-stack">
+        <div class="sb-card-shadow"></div>
+        <div class="sb-main-card">
+          <div class="sb-card-title">Live Agent Performance</div>
+          <div class="sb-card-value">24<sup>/7</sup></div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;font-weight:300;">Every call answered. Any language. Zero missed opportunities.</p>
+          <div class="sb-metric-row">
+            <div class="sb-metric">
+              <div class="sb-metric-val">98<sup>%</sup></div>
+              <div class="sb-metric-lbl">Answer Rate</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">3<sup>×</sup></div>
+              <div class="sb-metric-lbl">More Bookings</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">14<sup>d</sup></div>
+              <div class="sb-metric-lbl">To Deployment</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">∞</div>
+              <div class="sb-metric-lbl">Concurrent Calls</div>
+            </div>
+          </div>
+          <div class="sb-industries">
+            <span class="industry-tag">Real Estate</span>
+            <span class="industry-tag">Healthcare</span>
+            <span class="industry-tag">Hospitality</span>
+            <span class="industry-tag">Auto</span>
+            <span class="industry-tag">Legal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SALES FUNNELS -->
+<section class="service-block" id="funnels">
+  <div class="sb-inner">
+    <div class="reveal-left">
+      <div class="sb-tag"><span class="sb-num-tag">03 —</span> Sales Funnels</div>
+      <h2 class="sb-title">Turn cold traffic into<br><em>booked calls.</em></h2>
+      <p class="sb-desc">Conversion-engineered funnels that capture, qualify, and close leads automatically — from first click to confirmed appointment. Zero manual follow-up. Every step optimised for the decision you want them to make.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Multi-step qualification</strong><span>Funnels that filter time-wasters and deliver only serious, pre-qualified leads.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Automated follow-up sequences</strong><span>Email, SMS, and WhatsApp sequences that nurture leads until they're ready to buy.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>A/B tested and optimised</strong><span>Every headline, CTA, and offer tested against real traffic — results improve over time.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Integrated with your CRM</strong><span>Every lead captured, scored, and synced to your system without lifting a finger.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Build My Funnel →</a>
+    </div>
+    <div class="reveal-right">
+      <div class="sb-card-stack">
+        <div class="sb-card-shadow" style="background:var(--blue);"></div>
+        <div class="sb-main-card" style="background:var(--navy-l);">
+          <div class="sb-card-title">Funnel Performance</div>
+          <div class="sb-card-value">340<sup>%</sup></div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;font-weight:300;">Average increase in qualified leads for funnel clients.</p>
+          <div class="sb-metric-row">
+            <div class="sb-metric">
+              <div class="sb-metric-val">22<sup>%</sup></div>
+              <div class="sb-metric-lbl">Conversion Rate</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">7<sup>d</sup></div>
+              <div class="sb-metric-lbl">Build Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ADS -->
+<section class="service-block" id="ads">
+  <div class="sb-inner flip">
+    <div class="reveal-right">
+      <div class="sb-tag"><span class="sb-num-tag">04 —</span> Ads</div>
+      <h2 class="sb-title">Ad spend that<br><em>pays itself back.</em></h2>
+      <p class="sb-desc">Paid advertising on Meta, Google, and TikTok designed for ROI — not just impressions. Sharp audience targeting, compelling creative, and campaigns built around numbers that matter: cost per acquisition and revenue generated.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Meta, Google & TikTok</strong><span>We run campaigns across all major platforms and allocate budget where it converts.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Creative that converts</strong><span>Ad copy, visuals, and hooks written to stop the scroll and drive the click.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Weekly reporting</strong><span>Clear breakdowns of spend, leads, CPA, and ROAS — no jargon, just the numbers.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Funnel integration</strong><span>Ads feed directly into your funnel — end-to-end tracking from impression to close.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Launch an Ads Campaign →</a>
+    </div>
+    <div class="reveal-left">
+      <div class="sb-card-stack">
+        <div class="sb-card-shadow" style="background:var(--ink);"></div>
+        <div class="sb-main-card" style="background:var(--vermil);">
+          <div class="sb-card-title" style="color:rgba(255,255,255,0.6);">Campaign ROAS</div>
+          <div class="sb-card-value">4.8<sup>×</sup></div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:8px;font-weight:300;">Average return on ad spend across all managed campaigns.</p>
+          <div class="sb-metric-row" style="background:rgba(0,0,0,0.12);">
+            <div class="sb-metric" style="background:rgba(0,0,0,0.08);">
+              <div class="sb-metric-val">Meta</div>
+              <div class="sb-metric-lbl" style="color:rgba(255,255,255,0.5);">Google · TikTok</div>
+            </div>
+            <div class="sb-metric" style="background:rgba(0,0,0,0.08);">
+              <div class="sb-metric-val">0</div>
+              <div class="sb-metric-lbl" style="color:rgba(255,255,255,0.5);">Wasted Budget</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SAAS DEVELOPMENT -->
+<section class="service-block" id="saas">
+  <div class="sb-inner">
+    <div class="reveal-left">
+      <div class="sb-tag"><span class="sb-num-tag">05 —</span> SaaS Development</div>
+      <h2 class="sb-title">Your idea,<br><em>shipped fast.</em></h2>
+      <p class="sb-desc">Custom software products built from idea to launch — fast. We build MVPs that prove the concept, then scale to full platforms. Clean code, scalable architecture, and a product your users will actually pay for.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>MVP to full product</strong><span>From validated concept to production-ready platform — we build the entire stack.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>AI-native architecture</strong><span>Products built with AI integrations baked in — not bolted on after the fact.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Subscription & billing ready</strong><span>Auth, payments, onboarding, and admin — everything a real SaaS needs from day one.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>You own the code</strong><span>Full IP transfer. No vendor lock-in. Your product is yours, completely.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Discuss Your SaaS Idea →</a>
+    </div>
+    <div class="reveal-right">
+      <div class="sb-card-stack">
+        <div class="sb-card-shadow" style="background:var(--ivory-dd);"></div>
+        <div class="sb-main-card" style="background:var(--navy);">
+          <div class="sb-card-title">Average Ship Time</div>
+          <div class="sb-card-value">30<sup>d</sup></div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;font-weight:300;">From signed brief to live MVP — tested, deployed, accepting users.</p>
+          <div class="sb-metric-row">
+            <div class="sb-metric">
+              <div class="sb-metric-val">100<sup>%</sup></div>
+              <div class="sb-metric-lbl">IP Ownership</div>
+            </div>
+            <div class="sb-metric">
+              <div class="sb-metric-val">0</div>
+              <div class="sb-metric-lbl">Lock-in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SCRAPER DEVELOPMENT -->
+<section class="service-block" id="scraper">
+  <div class="sb-inner flip">
+    <div class="reveal-right">
+      <div class="sb-tag"><span class="sb-num-tag">06 —</span> Scraper Development</div>
+      <h2 class="sb-title">Data that works<br><em>for you.</em></h2>
+      <p class="sb-desc">Custom data extraction pipelines built to pull exactly what you need — competitor pricing, lead lists, market signals, product data — delivered clean, structured, and on schedule. Automated. Reliable. No manual copy-paste.</p>
+      <div class="sb-features">
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Custom-built per target</strong><span>Every scraper engineered for the specific site or API — not a generic off-the-shelf tool.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Scheduled & automated</strong><span>Runs on your cadence — hourly, daily, weekly — and delivers clean data to wherever you need it.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Lead list generation</strong><span>Build targeted prospect lists from LinkedIn, directories, and industry databases at scale.</span></div>
+        </div>
+        <div class="sb-feature">
+          <div class="sb-feature-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="sb-feature-text"><strong>Delivered clean</strong><span>Data normalised, de-duplicated, and output as CSV, Google Sheets, or direct API feed.</span></div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Build a Scraper →</a>
+    </div>
+    <div class="reveal-left">
+      <div style="padding: 40px; background: var(--ivory); border: 1px solid var(--ivory-d);">
+        <div style="font-family:var(--f-label);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-40);margin-bottom:20px;">What We Extract</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">Lead Lists</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">Pricing Data</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">Reviews</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">Job Listings</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">LinkedIn</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">Market Data</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">E-Commerce</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-d);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">News/Media</div>
+          <div style="padding:14px;background:var(--cream);border:1px solid var(--ivory-dd);text-align:center;font-family:var(--f-label);font-size:11px;font-weight:700;color:var(--ink-60);">+ Custom</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-cases">
+  <div class="label reveal">Deployed Playbooks</div>
+  <h2 class="display display-md reveal d1" style="margin-top:18px;max-width:680px;">Nine production playbooks.<br><em>Proven outcomes.</em></h2>
+  <div class="uc-grid">
+    <div class="uc-card reveal">
+      <div class="uc-sector">Real Estate</div>
+      <div class="uc-title">Buyer Qualification Agent</div>
+      <div class="uc-desc">Qualifies inbound buyer enquiries, filters by budget and timeline, books site visits automatically.</div>
+      <div class="uc-stat">Weekly</div>
+      <div class="uc-stat-lbl">Qualified site visits booked</div>
+    </div>
+    <div class="uc-card reveal d1">
+      <div class="uc-sector">Real Estate</div>
+      <div class="uc-title">Cold Database Revival</div>
+      <div class="uc-desc">Reactivates dormant leads who stopped engaging. Re-books and re-qualifies at scale.</div>
+      <div class="uc-stat">3×</div>
+      <div class="uc-stat-lbl">Reactivation rate</div>
+    </div>
+    <div class="uc-card reveal d2">
+      <div class="uc-sector">E-Commerce</div>
+      <div class="uc-title">COD Confirmation Agent</div>
+      <div class="uc-desc">Confirms cash-on-delivery orders before dispatch — reduces returns and failed deliveries.</div>
+      <div class="uc-stat">60%</div>
+      <div class="uc-stat-lbl">Return rate reduction</div>
+    </div>
+    <div class="uc-card reveal">
+      <div class="uc-sector">E-Commerce</div>
+      <div class="uc-title">Cart Abandonment Agent</div>
+      <div class="uc-desc">Calls or messages cart abandoners within minutes to recover the sale with a personalised nudge.</div>
+      <div class="uc-stat">22%</div>
+      <div class="uc-stat-lbl">Recovery rate</div>
+    </div>
+    <div class="uc-card reveal d1">
+      <div class="uc-sector">Healthcare</div>
+      <div class="uc-title">Clinic Front Desk Agent</div>
+      <div class="uc-desc">Handles appointment booking, rescheduling, pre-visit instructions, and follow-up calls.</div>
+      <div class="uc-stat">24/7</div>
+      <div class="uc-stat-lbl">Clinic availability</div>
+    </div>
+    <div class="uc-card reveal d2">
+      <div class="uc-sector">Hospitality</div>
+      <div class="uc-title">Front Desk Relief Agent</div>
+      <div class="uc-desc">Handles routine guest enquiries in multiple languages, freeing staff for high-touch service.</div>
+      <div class="uc-stat">3 langs</div>
+      <div class="uc-stat-lbl">Handled natively per call</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-stack">
+  <div class="label reveal" style="color:rgba(255,255,255,0.4);">Certified On</div>
+  <h2 class="display display-sm reveal d1" style="color:#fff;margin-top:16px;max-width:600px;">The platforms behind the <em style="font-style:italic;color:var(--vermil-l);">frontier.</em></h2>
+  <div class="tech-grid">
+    <div class="tech-pill">Claude / Claude Code</div>
+    <div class="tech-pill">OpenAI</div>
+    <div class="tech-pill">Anthropic</div>
+    <div class="tech-pill">ElevenLabs</div>
+    <div class="tech-pill">n8n</div>
+    <div class="tech-pill">VAPI</div>
+    <div class="tech-pill">Retell AI</div>
+    <div class="tech-pill">Gemini</div>
+    <div class="tech-pill">Cursor</div>
+    <div class="tech-pill">GoHighLevel</div>
+    <div class="tech-pill">Twilio</div>
+    <div class="tech-pill">Make / Zapier</div>
+    <div class="tech-pill">HubSpot</div>
+    <div class="tech-pill">Salesforce</div>
+    <div class="tech-pill">Perplexity</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div>
+    <h2 class="cta-band-title">Ready to install <em>your first system?</em></h2>
+    <p class="cta-band-sub">Every engagement starts with a 30-minute discovery call. We'll identify exactly where AI creates the biggest return for you — and send you a clear scope before we build.</p>
+  </div>
+  <div class="cta-band-actions">
+    <a href="contact.html" class="btn btn-primary btn-lg">Book a Discovery Call</a>
+    <a href="results.html" class="btn btn-outline-white">See Results</a>
+    <div class="cta-note">No obligation · Response within 24 hours</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">Focal Agencies</a>
+      <p class="footer-tagline">Websites, AI voice, sales funnels, ads, SaaS, and scraper pipelines — built fast, deployed live.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">Li</a>
+        <a href="#" class="footer-social">YT</a>
+        <a href="#" class="footer-social">X</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#web">Website Development</a></li>
+        <li><a href="#voice">AI Voice</a></li>
+        <li><a href="#funnels">Sales Funnels</a></li>
+        <li><a href="#ads">Ads</a></li>
+        <li><a href="#saas">SaaS Development</a></li>
+        <li><a href="#scraper">Scraper Development</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="results.html">Case Studies</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:Archit@focalagencies.com">Archit@focalagencies.com</a></li>
+        <li><a href="contact.html">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Focal Agencies. All rights reserved.</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Highlight tab on scroll
+  const sections = ['web','voice','funnels','ads','saas','scraper'];
+  const tabs = document.querySelectorAll('.service-tab');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 200) current = id;
+    });
+    tabs.forEach(t => {
+      t.classList.toggle('tab-active', t.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
