@@ -340,13 +340,10 @@
     .wellship-card:hover { border-color: var(--vermil); }
     .wc-left { padding: 52px 48px; background: var(--cream); }
     .wc-right { background: var(--navy); padding: 52px 48px; display: flex; flex-direction: column; justify-content: flex-start; }
-    .wc-site-preview { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f4f4f4; border-radius: 4px; }
-    .wc-site-preview iframe { position: absolute; top: 0; left: 0; width: 200%; height: 200%; border: none; transform: scale(0.5); transform-origin: top left; pointer-events: none; z-index: 2; }
-    .wc-site-preview .preview-fallback { position: absolute; inset: 0; background: linear-gradient(135deg,#f0ede8 0%,#e8e2d9 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; z-index: 1; }
-    .wc-site-preview .pf-url { font-family: var(--f-label); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vermil); }
-    .wc-site-preview .pf-name { font-family: var(--f-display); font-size: 28px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); line-height: 1; }
-    .wc-site-preview .pf-sub { font-size: 12px; color: var(--ink-40); font-weight: 300; }
-    .wc-site-preview.iframe-loaded .preview-fallback { display: none; }
+    .wc-site-preview { position: relative; width: 100%; height: 220px; overflow: hidden; background: linear-gradient(160deg,#fff8fb 0%,#fff 55%,#fdf0f5 100%); border-radius: 4px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
+    .wc-site-preview img.ws-logo { height: 44px; object-fit: contain; max-width: 75%; }
+    .wc-site-preview .ws-tagline { font-size: 12px; color: #8B1C52; font-weight: 300; text-align: center; max-width: 260px; line-height: 1.5; }
+    .wc-site-preview .ws-url { font-family: var(--f-label); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #aaa; position:absolute; bottom:10px; right:12px; }
     .wc-tag { font-family: var(--f-label); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermil); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
     .wc-tag::before { content:''; width:20px; height:2px; background:var(--vermil); flex-shrink:0; }
     .wc-name { font-family: var(--f-display); font-size: clamp(28px, 3vw, 44px); font-weight: 400; color: var(--ink); letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; margin-bottom: 16px; }
@@ -390,12 +387,9 @@
     </div>
     <div class="wc-right">
       <div class="wc-site-preview">
-        <iframe class="site-preview-frame" src="https://wellshipclinic.com" title="Wellship Clinic website preview" scrolling="no" tabindex="-1"></iframe>
-        <div class="preview-fallback">
-          <div class="pf-url">wellshipclinic.com</div>
-          <div class="pf-name">Wellship Clinic</div>
-          <div class="pf-sub">Healthcare · Live Site</div>
-        </div>
+        <img class="ws-logo" src="images/wellship-logo.png" alt="Wellship Clinic">
+        <div class="ws-tagline">Transform Your Skin, Hair & Wellness — Delhi NCR</div>
+        <div class="ws-url">wellshipclinic.com →</div>
       </div>
       <div class="wc-metric-grid" style="margin-top:20px;">
         <div class="wc-metric"><div class="wc-m-val">&lt;2s</div><div class="wc-m-lbl">Load Time</div></div>
